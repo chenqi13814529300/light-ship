@@ -1,0 +1,61 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+
+		{
+			"path": "pages/register/Register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/login/Login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/login/ResetPwd",
+			"style": {
+				"navigationBarTitleText": "重置密码"
+			}
+		},
+
+		{
+			"path": "pages/index/Index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"backgroundColor": "#242729",
+		"color": "#48D1CC",
+		"selectedColor": "#F8F8FF",
+		"position": "bottom",
+		"list": [{
+				"text": "首页",
+				"pagePath": "pages/index/Index",
+				"iconPath": "static/tabbar/list.png",
+				"selectedIconPath": "static/tabbar/list_active.png"
+			}
+			// {
+			// 	"text": "市场",
+			// 	"pagePath": "pages/market/market1",
+			// 	"iconPath": "static/tabbar/grid.png",
+			// 	"selectedIconPath": "static/tabbar/grid_active.png"
+			// },
+			// {
+			// 	"text": "我的",
+			// 	"pagePath": "pages/profile/profile",
+			// 	"iconPath": "static/tabbar/me.png",
+			// 	"selectedIconPath": "static/tabbar/me_active.png"
+			// }
+		]
+	}
+}

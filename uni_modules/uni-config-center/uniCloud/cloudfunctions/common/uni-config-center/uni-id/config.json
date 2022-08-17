@@ -1,0 +1,70 @@
+{
+  "passwordSecret": "ship-demo", 
+  "tokenSecret": "ship-demo", 
+  "tokenExpiresIn": 7200, 
+  "tokenExpiresThreshold": 600, 
+  "passwordErrorLimit": 6, 
+  "passwordErrorRetryTime": 3600, 
+  "autoSetInviteCode": false, 
+  "forceInviteCode": false, 
+  "app": { 
+    "tokenExpiresIn": 2592000,
+    "oauth": {
+      "weixin": {
+        "appid": "weixin appid",
+        "appsecret": "weixin appsecret"
+      },
+      "qq": {
+        "appid": "qq appid",
+        "appsecret": "qq appsecret"
+      },
+      "apple": { 
+        "bundleId": "your bundleId"
+      }
+    }
+  },
+  "web": {
+    "tokenExpiresIn": 14400
+  },
+  "mp-weixin": {
+    "tokenExpiresIn": 259200,
+    "oauth": {
+      "weixin": {
+        "appid": "weixin appid",
+        "appsecret": "weixin appsecret"
+      }
+    }
+  },
+  "mp-qq": {
+    "tokenExpiresIn": 259200,
+    "oauth": {
+      "qq": {
+        "appid": "qq appid",
+        "appsecret": "qq appsecret"
+      }
+    }
+  },
+  "mp-alipay": {
+      "tokenExpiresIn": 259200,
+      "oauth": {
+        "alipay": {
+          "appid": "alipay appid",
+          "privateKey": "alipay privateKey", 
+          "keyType": "PKCS8" 
+        }
+      }
+  },
+  "service": {
+    "sms": {
+      "name": "发送验证码", 
+      "codeExpiresIn": 180, 
+      "smsKey": "d798215762a7701f95829b973aca0c7f", 
+      "smsSecret": "5a50a4b9a1b2cab74658b42cff0c24bf"
+    },
+    "univerify": {
+      "appid": "__UNI__E5F36C2", 
+      "apiKey": "94547b8d0cdd069b5a0231082c630af8", 
+      "apiSecret": "a7e57c461bf83583f1e59ef90e329cd2"
+    }
+  }
+}
