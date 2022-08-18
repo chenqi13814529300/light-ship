@@ -40,17 +40,19 @@ module.exports = {
 	},
 	
 	// 手机一键登录
-	// async fastLogin(userInfo) {
+	async fastLogin(userInfo) {
+		
+		
+		const {
+			access_token,
+			openid
+		} = userInfo
 	
-	// 	const {
-	// 		access_token,
-	// 		openid
-	// 	} = userInfo
-	
-	// 	const res = await uniID.loginByUniverify({
-	// 		access_token,
-	// 		openid
-	// 	})
-	// 	return res
-	// },
+		const res = await uniID.loginByUniverify({
+			access_token,
+			openid,
+			type:'login'
+		})
+		return res
+	},
 }

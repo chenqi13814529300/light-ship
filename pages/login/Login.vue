@@ -57,71 +57,73 @@
 		},
 		onLoad() {},
 		mounted() {
-			// this.isAutoLogin()
+			this.isAutoLogin()
 		},
 		methods: {
 			...mapMutations(["setUserInfo"]),
 			// 判断是否支持一键登录
-			// isAutoLogin() {
-			// 	let _that = this
-			// 	uni.getProvider({ //获取可用的服务提供商
-			// 		service: 'oauth',
-			// 		success: function(res) {
-			// 			console.log(res.provider) // ['weixin', qq', 'univerify']
-			// 		}
-			// 	});
-			// 	uni.preLogin({ //预登录
-			// 		provider: 'univerify', //用手机号登录
-			// 		success() {
-			// 			_that.autoStatus = true
-			// 			console.log('预登录成功')
-			// 			_that.fasterLogin()
-			// 		},
+			isAutoLogin() {
+				let _that = this
+				uni.getProvider({ //获取可用的服务提供商
+					service: 'oauth',
+					success: function(res) {
+						console.log(res.provider) // ['weixin', qq', 'univerify']
+					}
+				});
+				uni.preLogin({ //预登录
+					provider: 'univerify', //用手机号登录
+					success() {
+						_that.autoStatus = true
+						console.log('预登录成功')
+						_that.fasterLogin()
+					},
 
-			// 		fail(err) { //预登录失败
-			// 			_that.autoStatus = false
-			// 			_that.error=err
-			// 			console.log('错误码：' + err.errCode)
-			// 			console.log(err.errMsg)
-			// 		}
-			// 	})
-			// },
+					fail(err) { //预登录失败
+						_that.autoStatus = false
+						_that.error = err
+						console.log('错误码：' + err.errCode)
+						console.log(err.errMsg)
+					}
+				})
+			},
 
-			// async fasterLogin() {
-			// 	let that = this
+			async fasterLogin() {
 
-			// 	uni.login({
-			// 		provider: 'univerify',
-			// 		// univerifyStyle: {
-			// 		// 	fullScreen: true
-			// 		// },
-			// 		async success(res) { // 登录成功
-			// 			console.log(res.authResult); // {openid:'登录授权唯一标识',access_token:'接口返回的 token'}
+				let that = this
 
-			// 			const login = uniCloud.importObject("login")
-			// 			const fastLoginRes = await login.fastLogin(res.authResult)
-			// 			console.log(fastLoginRes)
-			// 			if (fastLoginRes.code == -100) {
-			// 				uni.showToast({
-			// 					title: "请先注册",
-			// 					icon: "none"
-			// 				})
-			// 				setTimeout(function() {
-			// 					uni.closeAuthView()
-			// 					uni.navigateTo({
-			// 						url: "/pages/register/Register"
-			// 					})
-			// 				}, 1000)
+				uni.login({
+					provider: 'univerify',
+					async success(res) { // 登录成功
+						console.log(res.authResult); // {openid:'登录授权唯一标识',access_token:'接口返回的 token'}
+						const login = uniCloud.importObject("login")
+						const fastLoginRes = await login.fastLogin(res.authResult)
+						console.log(fastLoginRes)
+						if (fastLoginRes.code == -100) {
+							uni.showToast({
+								title: "请先注册",
+								icon: "none"
+							})
+							setTimeout(function() {
+								uni.closeAuthView()
+								uni.navigateTo({
+									url: "/pages/register/Register"
+								})
+							}, 1000)
 
-			// 			}
+						}
 
-			// 			if (fastLoginRes.code == 0) {
-			// 				that.loginAfter(fastLoginRes)
-			// 			}
+						if (fastLoginRes.code == 0) {
+							uni.closeAuthView()
+							that.loginAfter(fastLoginRes)
+						}
 
-			// 		}
-			// 	})
-			// },
+					},
+					fail(res) { // 登录失败
+						console.log(res.errCode)
+						uni.closeAuthView()
+					}
+				})
+			},
 			// 选择登录类型
 			selectType() {
 				this.isTradition = !this.isTradition
@@ -130,7 +132,7 @@
 				const data = this.loginInfo
 				const that = this
 				console.log(this.isTradition)
-					
+
 				if (this.isTradition) {
 					const login = uniCloud.importObject("login")
 					const loginInfo = await login.commonLogin(data)
@@ -153,7 +155,7 @@
 						console.log(res)
 						switch (res.code) {
 							case 0:
-							// 执行登录成功后的逻辑
+								// 执行登录成功后的逻辑
 								that.loginAfter(res)
 								break;
 							case -100:
@@ -194,27 +196,27 @@
 					title: '登录成功',
 					icon: 'none',
 				})
-			
+
 				// 保存token
 				uni.setStorageSync('uni_id_token', res.token)
 				uni.setStorageSync('uni_id_token_expired', res.tokenExpired)
-			
+
 				var dayAdd1 = new Date();
 				dayAdd1 = dayAdd1.setDate(dayAdd1.getDate() + 1);
 				dayAdd1 = new Date(dayAdd1);
 				// 记入token终止日期，1天
 				uni.setStorageSync('uni_id_token_end_time', dayAdd1.getTime())
 				// 其他业务代码，如跳转到首页等
-			
+
 				this.setUserInfo(res.userInfo)
-				
+
 				setTimeout(function() {
 					uni.switchTab({
 						url: "/pages/index/Index"
 					})
 				}, 1000)
 			},
-			
+
 			goRegister() {
 				uni.navigateTo({
 					url: "/pages/register/Register"
