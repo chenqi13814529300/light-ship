@@ -18,5 +18,6 @@
 		background-color: #242729;
 		width: 90%;
 		margin: auto;
+		color: white;
 	}
 </style>

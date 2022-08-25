@@ -10,3 +10,10 @@
 
 // 下面示例查询uni-id-users表的所有数据
 db.collection('uni-id-users').get();
+
+db.collection("digit-goods").where({
+				"is_on_sale": true,
+				"goods_type":0
+			}).skip(0).limit(10)
+			.orderBy("rank_index")
+			.get()
